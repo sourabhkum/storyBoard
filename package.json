@@ -1,0 +1,25 @@
+{
+  "name": "story-board",
+  "version": "1.0.0",
+  "description": "story board read story",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "story",
+    "board"
+  ],
+  "author": "sourabh kumar",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.13.5",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0"
+  }
+}
