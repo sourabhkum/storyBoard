@@ -1,0 +1,18 @@
+<div class="row">
+  {{#if story}}
+  <div class="col s12 m9">
+    <div class="card">
+
+      <span class="card-title">{{story.title}}</span>
+
+      <div class="card-content">
+        <p>{{{story.body}}}</p>
+      </div>
+      <div class="chip">
+        <img src="{{story.user.image}}" alt="Contact Person"> {{story.user.firstName}} {{story.user.lastName}}
+      </div>
+    </div>
+
+  </div>
+</div>
+{{/if}}

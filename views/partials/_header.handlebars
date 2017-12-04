@@ -1,0 +1,68 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo center">Story Book</a>
+        <a href="#" data-activates="main-menu" class="button-collapse show-on-large">
+            <i class="fa fa-bars"></i>
+        </a>
+        <!-- Right Nav -->
+        <ul class="right hide-on-small-only">
+            {{#if user}}
+            <li>
+                <a href="/dashboard">Welcome {{user.firstName}}</a>
+            </li>
+            <li>
+                <a href="/auth/logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</li>
+            </a>
+            {{else}}
+            <li>
+                <a href="/stories">
+                    <i class="fa fa-book" aria-hidden="true"></i> Stories</a>
+            </li>
+            {{/if}}
+        </ul>
+        <ul class="side-nav" id="main-menu">
+            <li>
+                {{#if user}}
+                <li>
+                    <div class="user-view">
+                        <div class="background">
+                            <img src="http://materializecss.com/images/office.jpg">
+                        </div>
+                        <a href="#!user">
+                            <img class="circle" src="{{user.image}}">
+                        </a>
+                        <a href="#!name">
+                            <span class=" name">{{user.firstName}}</span>
+                        </a>
+                        <a href="#!email">
+                            <span class=" email">{{user.email}}</span>
+                        </a>
+                    </div>
+                </li>
+                {{else}}
+                <li>
+                    <a class="btn red darken-1 social google " href="/auth/google">
+                        <i class="fa fa-google" aria-hidden="true"></i> Sign in</a>
+                </li>
+                <li>
+                    <a href="/stories">
+                        <i class="fa fa-book" aria-hidden="true"></i>Stories</a>
+                </li>
+                {{/if}} {{#if user}}
+                <li>
+                    <a href="/dashboard">
+                        <i class="material-icons">dashboard</i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="/stories">
+                        <i class="material-icons">book</i>My Stories</a>
+                </li>
+                <li>
+                    <a href="/auth/logout">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</li>
+                </a>
+                {{/if}}
+        </ul>
+    </div>
+</nav>

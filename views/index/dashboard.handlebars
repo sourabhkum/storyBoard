@@ -1,0 +1,38 @@
+<div class="row">
+    <h4>My Stories</h4>
+    <div class="col s12 m12">
+        {{#if stories}}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Comment</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each stories}}
+                <tr>
+                    <td>{{title}}</td>
+                    <td>{{status}}</td>
+                    <td>{{allowComment}}</td>
+                    <td>
+                        <a class="btn-floating btn-small red" href="stories/edit/{{id}}">
+                            <i class="small material-icons">mode_edit</i>
+                        </a>
+                        <a class="btn-floating btn-small red">
+                            <i class="small material-icons">delete_sweep</i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {{/each}}
+         {{else}}
+        <p>No Stories</p>
+        {{/if}}
+    </div>
+
+</div>

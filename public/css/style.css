@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+  .bottom-btn{
+    margin-bottom: 15px;
+  }
+  .col.s12.m9.card {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+span.card-title {
+  margin-left: 12px;
+  margin-top: 33px;
+}

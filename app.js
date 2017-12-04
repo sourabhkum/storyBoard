@@ -1,10 +1,13 @@
 const express=require('express');
+const bodyParser = require('body-parser');
+const exphbs  = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport=require('passport');
-const app=express();
+const path=require('path');
 const {mongoose}=require('./db/connection');
 const port=process.env.PORT||3000;
+const app=express();
 
 //MODEL REQUIRED
 require('./models/user');
@@ -14,6 +17,25 @@ require('./config/passport')(passport);
 
 //config file
 const config=require('./config/config');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json());
+
+//load helpers
+const {truncate,stripTags,formatDate}=require('./helper/hbs');
+
+//Hbs middleware
+app.engine('handlebars', exphbs({
+    helpers:{
+        truncate:truncate,
+        stripTags:stripTags,
+        formatDate:formatDate
+    },
+    defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 //load middleware cookieParser or Session
 app.use(cookieParser());
@@ -31,11 +53,14 @@ app.use(session({
       next();
   });
 
+  //Set Static Path
+app.use(express.static(path.join(__dirname,'public')));
 //load routes
 app.use('/auth',require('./routes/auth'));
-app.get('/',(req,res)=>{
-    res.send('hello world')
-});
+app.use('/stories',require('./routes/stories'));
+app.use(require('./routes/index'));
+
+
 app.listen(port,()=>{
     console.log(`Running on ${port}`);
 });
