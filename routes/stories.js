@@ -54,7 +54,7 @@ router.post('/add', ensureAuthenticated, (req, res) => {
 });
 router.get('/show/:id', (req, res) => {
     let id = req.params.id;
-    Story.findOne({ _id: id }).populate('user').then((story) => {
+    Story.findOne({ _id: id }).populate('user').populate('comments.commentuser').then((story) => {
         res.render('story/single', {
             story: story
         });
@@ -99,6 +99,20 @@ router.delete('/delete/:id',ensureAuthenticated, (req, res) => {
     let id = req.params.id;
     Story.findOneAndRemove({ _id: id }).then((story) => {
         res.redirect('/stories/dashboard')
-    })
-})
+    });
+});
+
+router.post('/comment/:id',(req,res)=>{
+Story.findOne({_id:req.params.id}).then((story)=>{
+    const newComment={
+        commentBody:req.body.commentBody,
+        commentuser:req.user._id
+    }
+    story.comments.unshift(newComment);
+    story.save().then((story)=>{
+        res.redirect(`/stories/show/${story.id}`)
+    });
+});
+    
+});
 module.exports = router;
