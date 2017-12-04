@@ -1,8 +1,9 @@
 <div class="row">
     <h4>My Stories</h4>
     <div class="col s12 m12">
-        {{#if stories}}
-        <table>
+        
+        <table class="striped">
+            {{#if stories}}
             <thead>
                 <tr>
                     <th>Title</th>
@@ -19,20 +20,21 @@
                     <td>{{status}}</td>
                     <td>{{allowComment}}</td>
                     <td>
-                        <a class="btn-floating btn-small red" href="stories/edit/{{id}}">
-                            <i class="small material-icons">mode_edit</i>
+                        <a class="btn left-align" href="/stories/edit/{{id}}">
+                            <i class="fa fa-pencil"></i>Edit
                         </a>
-                        <a class="btn-floating btn-small red">
-                            <i class="small material-icons">delete_sweep</i>
-                        </a>
+                        <form action="/stories/delete/{{id}}?_method=DELETE" method="post" id="delete-form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn red">Delete</button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
-        </table>
-        {{/each}}
-         {{else}}
+             {{/each}} {{else}}
         <p>No Stories</p>
         {{/if}}
+        </table>
+       
     </div>
 
 </div>

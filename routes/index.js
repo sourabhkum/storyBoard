@@ -11,12 +11,15 @@ router.get('/about',(req,res)=>{
     res.render('index/about');
 });
 
-router.get('/dashboard',ensureAuthenticated,(req,res)=>{
-    Story.find({user:req.user._id}).populate('user').then((stories)=>{
-        res.render('index/dashboard',{
-            stories:stories
+router.get('/stories',(req, res) => {
+    Story.find({ status:'Public' }).populate('user').then((stories) => {
+        res.render('index/index', {
+            stories: stories
+
         });
     });
+
 });
+
 
 module.exports=router

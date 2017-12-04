@@ -12,7 +12,7 @@ const StorySchema=new Schema({
     },
     allowComment:{
         type:Boolean,
-        default:false
+        default:true
     },
     status:{
         type:String,
