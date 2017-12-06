@@ -1,17 +1,20 @@
 {{#if error }}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <strong>{{error}}</strong>
-</div>
+
+<script>
+  $(document).ready(function(){
+
+   Materialize.toast('{{error}}', 4000)
+
+});
+</script>
 {{/if}}
 {{#each errors}}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <strong>{{text}}</strong>
-</div>
+<script>
+  $(document).ready(function(){
+
+   Materialize.toast('{{text}}', 4000)
+
+});
+</script>
 {{else}}
 {{/each}}

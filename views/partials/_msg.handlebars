@@ -1,19 +1,20 @@
 {{#if sucess_msg}}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <strong>{{sucess_msg}}</strong>
-</div>
+<script>
+  $(document).ready(function(){
 
+   Materialize.toast('{{sucess_msg}}', 4000)
+
+});
+</script>
 {{/if}}
 
 {{#if error_msg}}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <strong>{{error_msg}}</strong>
-</div>
+<script>
+  $(document).ready(function(){
+
+   Materialize.toast('{{error_msg}}', 4000)
+
+});
+</script>
 {{/if}}
 

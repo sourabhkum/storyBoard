@@ -16,7 +16,7 @@
     {{/if}}
     <main>
         <div class="container">
-          {{>_msg}} 
+          
         {{{body}}}
          
     </div>
@@ -43,6 +43,9 @@
   <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
   <script>
 			CKEDITOR.replace( 'body' );
-		</script>
+      </script>
+      
+       {{>_msg}}
+       {{>_error}}
 </body>
 </html>

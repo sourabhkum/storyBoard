@@ -32,25 +32,44 @@ router.get('/add', ensureAuthenticated, (req, res) => {
 });
 
 router.post('/add', ensureAuthenticated, (req, res) => {
-    let allowComment
-    if (req.body.allowComment) {
-        allowComment = true
-    } else {
-        allowComment = false
+    let errors=[];
+    if(!req.body.title){
+        errors.push({ text: 'Please add a Title' });
     }
-    const story = new Story({
-        title: req.body.title,
-        body: req.body.body,
-        status: req.body.status,
-        allowComment: allowComment,
-        user: req.user._id
-    });
-    story.save().then((result) => {
-        res.redirect('/stories/dashboard')
-    }).catch((err) => {
-        res.send(err);
-    });
+    if(!req.body.body){
+        errors.push({text:'Please Write Story'})
+    }
+    if (errors.length > 0) {
+        res.render('story/addStory', {
+            errors: errors,
+            title: req.body.title,
+            details: req.body.status
+        });
+    }
+    else{
+        let allowComment
+        if (req.body.allowComment) {
+            allowComment = true
+        } else {
+            allowComment = false
+        }
+        const story = new Story({
+            title: req.body.title,
+            body: req.body.body,
+            status: req.body.status,
+            allowComment: allowComment,
+            user: req.user._id
+        });
+        story.save().then((result) => {
+            req.flash('sucess_msg',"Story Added Sucessfully");
+            res.redirect('/stories/dashboard')
+        }).catch((err) => {
+            res.send(err);
+        });
+    
+    }
 
+    
 });
 router.get('/show/:id', (req, res) => {
     let id = req.params.id;
@@ -98,6 +117,7 @@ router.put('/edit/:id',ensureAuthenticated, (req, res) => {
 router.delete('/delete/:id',ensureAuthenticated, (req, res) => {
     let id = req.params.id;
     Story.findOneAndRemove({ _id: id }).then((story) => {
+        req.flash('sucess_msg','Story Delete Sucessfully')
         res.redirect('/stories/dashboard')
     });
 });
