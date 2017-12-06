@@ -1,5 +1,5 @@
 <div class="row">
-    <h4>My Stories</h4>
+    <h5>My Stories</h5>
     <div class="col s12 m12">
         
         <table class="bordered">
@@ -20,18 +20,21 @@
                     <td>{{status}}</td>
                     <td>{{allowComment}}</td>
                     <td>
-                        <a class="btn left-align" href="/stories/edit/{{id}}">
-                            <i class="fa fa-pencil"></i>Edit
+                        <a class="btn left-align btn-small" href="/stories/edit/{{id}}">
+                          <span> <i class="material-icons">create</i> </span>
                         </a>
                         <form action="/stories/delete/{{id}}?_method=DELETE" method="post" id="delete-form">
                             <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn red">Delete</button>
+                            <button class="btn red btn-small"><span> <i class="material-icons">delete</i> </span></button>
                         </form>
                     </td>
                 </tr>
             </tbody>
              {{/each}} {{else}}
-        <p>No Stories</p>
+             <div class="center welcome-margin">
+             <a href="/stories/add" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+            <p>Add Story</p>
+            </div>
         {{/if}}
         </table>
        

@@ -22,5 +22,42 @@ span.card-title {
   display: inline;
 }
 .welcome-margin{
-  margin-top: 12%
+  margin-top: 12%;
+  
+}
+.chip{
+  margin-top: 13px;
+}
+.card .card-content {
+  padding: 15px;
+  border-radius: 0 0 2px 2px;
+}
+textarea.materialize-textarea {
+  overflow-y: hidden;
+  padding: 0.8rem 0 0.6rem 0;
+  resize: none;
+  min-height: 3rem;
+}
+body p{
+  font-family: 'Roboto', sans-serif;
+}
+h4{
+  font-family: 'Roboto', sans-serif;
+}
+ td,th{
+  font-family: 'Roboto', sans-serif;
+}
+
+.comment {
+  padding: 6px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+@media only screen and (max-width: 500px) {
+  .btn-small {
+    height: 24px;
+    line-height: 24px;
+    padding: 0 0.5rem;
+    margin-bottom: 3px
+}
 }
