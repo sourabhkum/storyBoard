@@ -1,7 +1,12 @@
 <div class="center welcome-margin">
-<h3>Welcome</h3>
+<h4>Login</h4>
+<p>Connect with a Social Network</p>
 {{#if user}}
  {{else}}   
-<a class="btn red darken-1 social google " href="/auth/google"><i class="fa fa-google left" aria-hidden="true"></i> Sign in with google</a>
+<a class="btn red darken-1 social google " href="/auth/google"><i class="fa fa-google left" aria-hidden="true"></i> Sign in with google</a><br>
+<a class="blue btn social-button social facebook" href="/auth/facebook">
+<i class="fa fa-facebook"></i> Sign in with facebook</a><br>
+  <a class="waves-effect social-button waves-light btn col s12 social twitter" href="/auth/twitter">
+  <i class="fa fa-twitter"></i> Sign in with twitter</a>
  {{/if}}
  </div>

@@ -22,7 +22,7 @@ span.card-title {
   display: inline;
 }
 .welcome-margin{
-  margin-top: 12%;
+  margin-top: 7%;
   
 }
 .chip{
@@ -52,6 +52,17 @@ h4{
   padding: 6px;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+}
+.facebook {
+  background-color: #3b5998 !important;
+  color: #fff !important;
+}
+.twitter {
+  background-color: #55acee !important;
+  color: #fff !important;
+}
+.social-button{
+  margin-top: 12px;
 }
 @media only screen and (max-width: 500px) {
   .btn-small {
