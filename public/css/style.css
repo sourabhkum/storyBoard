@@ -62,7 +62,7 @@ h4{
   color: #fff !important;
 }
 .social-button{
-  margin-top: 12px;
+  margin-bottom: 12px;
 }
 @media only screen and (max-width: 500px) {
   .btn-small {
