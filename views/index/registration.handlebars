@@ -3,7 +3,7 @@
       <div class="row">
         {{#if user}} {{else}}
           <div class="col s12 m6">
-             <h6 class="login-header">Login with a Social Network</h6>
+             <h6 class="login-header">Connect with a Social Network</h6>
             <div class="social-container">
             <a class="btn red  social-button social google " href="/auth/google">
               <i class="fa fa-google left" aria-hidden="true"></i> Sign in with google</a>
@@ -20,9 +20,13 @@
             <div class="vl"></div>
           </div>
         <div class="col s12 m5">
-          <h6 class="login-header">Sign in Manually</h6>
+          <h6 class="login-header">Sigup  Manually</h6>
            <div class="login-container">
-          <form action="/auth" method="post">
+          <form action="/auth/registration" method="post">
+           <div class="input-field col s12">
+                    <label for="name">Name</label>
+                    <input type="text" name="firstName" id="name" class="form-control" required autofocus value="{{firstName}}">
+                </div>
             <div class="input-field col s12">
               <label for="email">Email</label>
               <input type="email" name="email" class="form-control" autofocus required {{email}}>
@@ -31,10 +35,10 @@
               <label for="password">Password</label>
               <input type="password" name="password" class="form-control" required>
             </div>
-            <button type="submit" class="btn red center">Login</button>
+            <button type="submit" class="btn red center">Register</button>
           </form>
           <div class="registrationLink">
-            Don't have an account <a href="/auth/registration">Sign up?</a></div>
+            Already have an account <a href="/"> Sign in?</a></div>
           </div>
         </div>
       </div>

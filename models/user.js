@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-
+const bcrypt=require('bcrypt');
 const UserSchema = new mongoose.Schema({
     id: {
         type: String,
-        required: true
+        required: false
     },
     provider:{
         type:String,
@@ -21,8 +21,25 @@ const UserSchema = new mongoose.Schema({
     },
     image: {
         type: String
-    }
+    },
+    password:{
+        type:String
 
+    }
+});
+UserSchema.pre('save',function(next){
+    var user=this;
+    if(user.isModified('password')){
+        bcrypt.genSalt(10,(err,salt)=>{
+            bcrypt.hash(user.password,salt,(err,hash)=>{
+                user.password=hash;
+                next();
+            });
+            
+        });
+    }else{
+        next();
+    }
 });
 
 const User = mongoose.model('User', UserSchema);

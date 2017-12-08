@@ -3,6 +3,7 @@ const passport = require('passport')
 
 const router = express.Router();
 
+const {User}=require('../models/user');
 //google
 router.get('/google', passport.authenticate('google',
   { scope: ['profile', 'email'] }));
@@ -29,6 +30,59 @@ router.get('/facebook/callback',
     // Successful authentication, redirect home.
     res.redirect('/stories/dashboard');
   });
+
+  router.get('/registration',(req,res)=>{
+    res.render('index/registration');
+  });
+  router.post('/registration', (req, res) => {
+    let errors = [];
+    if (!req.body.firstName) {
+        errors.push({ text: 'Please Enter Name' });
+    }
+    if (!req.body.email) {
+        errors.push({ text: 'Please Enter Email' });
+    }
+    if (req.body.password < 4) {
+        errors.push({ text: 'Password Must Be At Least 4 Characters' });
+    }
+    if (errors.length > 0) {
+        res.render('index/registration', {
+            errors: errors,
+            firstName: req.body.firstName,
+            email: req.body.email,
+            password: req.body.password
+        });
+    } else {
+        User.findOne({ email: req.body.email }).then((user) => {
+            if (user) {
+               req.flash('error_msg','Enail Already Exists');
+               res.redirect('/');
+            } else {
+                const user = new User({
+                  firstName: req.body.firstName,
+                    email: req.body.email,
+                    password: req.body.password
+                });
+                user.save().then((result) => {
+                    req.flash('sucess_msg', 'Registration Sucessfully');
+                    res.redirect('/');
+                }).catch((err) => {
+                    res.send(err);
+                });
+            }
+        });
+
+    }
+});
+
+router.post('/', (req, res,next) => {
+  passport.authenticate('local',{
+      successRedirect:'/stories/dashboard',
+      failureRedirect: '/',
+      failureFlash: true
+  })
+  (req,res,next);
+});
 
 router.get('/verify', (req, res) => {
   if (req.user) {
