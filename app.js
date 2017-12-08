@@ -47,6 +47,11 @@ app.set('view engine', 'handlebars');
 //load middleware cookieParser or Session
 app.use(cookieParser());
 app.use(session({
+    cookie:{
+        secure: true,
+        maxAge:60000
+           },
+    store: new RedisStore(),
     secret: config.secret,
     resave: true,
     saveUninitialized: true,
