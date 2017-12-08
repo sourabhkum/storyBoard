@@ -106,4 +106,8 @@ h6.login-header {
 .social-container {
  border: none;
 }
+.login-divider {
+  border-top: 2px solid #ee6e73;
+  padding: 10px;
+}
 }
