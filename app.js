@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport=require('passport');
+const RedisStore = require('connect-redis')(session);
 const path=require('path');
 const methodOverride = require('method-override')
 const {mongoose}=require('./db/connection');
