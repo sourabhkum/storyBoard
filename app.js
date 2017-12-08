@@ -48,8 +48,9 @@ app.set('view engine', 'handlebars');
 app.use(cookieParser());
 app.use(session({
     secret: config.secret,
-    resave: true,
-    saveUninitialized: true,
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: false,
   }));
   app.use(flash()); 
   app.use(passport.initialize());
